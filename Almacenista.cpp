@@ -397,6 +397,7 @@ void Almacenista::OrdenCompra(int iIdInventario) {
   int iIdProducto;
   int iCantidadProductos = 0;
   int iExistenciaProducto = 0;
+  char cOpcion;
 
   iCantidadProductos = aInventarios[iIdInventario].Size();
 
@@ -423,6 +424,33 @@ void Almacenista::OrdenCompra(int iIdInventario) {
   cout << endl << "----------------------------------------------" << endl;
   cout << "desea imprimir? (y/n)" << endl;
   cout << ">>> ";
+  cin >> cOpcion;
+  if (cOpcion == 'y'){
+
+    ofstream OutOrden("Orden de compra para inventario"+aInventarios[iIdInventario].GetName());
+    OutOrden << endl
+         << "   Inventario: \"" <<aInventarios[iIdInventario].GetName() <<"\"" << endl
+         << "----------------------------------------------" << endl
+         << "|      O R D E N   D E  C O M P R A S        |" << endl
+         << "----------------------------------------------" << endl
+         << "|  Productos por adquirir:                   |"<<endl
+         << "----------------------------------------------" << endl
+         <<"| id " << "|   nombre Producto   |"<< " cant a adquirir |" << endl
+         << "----------------------------------------------";
+
+    for (int iIdProducto = 1; iIdProducto <= iCantidadProductos; iIdProducto++){
+      iExistenciaProducto = aInventarios[iIdInventario].GetCantidadProduct(iIdProducto);
+      if (iExistenciaProducto < 6){
+
+        OutOrden<< endl << right << setfill(' ')
+        << "| "<< setw(2) << iIdProducto << " |"
+        << setw(20) << aInventarios[iIdInventario].GetProductName(iIdProducto) << " |"
+        << setw(16) << 10 << " |";
+      }
+    } // for
+    OutOrden << endl << "----------------------------------------------" << endl;
+
+  }//if imprimir orden
 
 }
 //******************************************************************************
