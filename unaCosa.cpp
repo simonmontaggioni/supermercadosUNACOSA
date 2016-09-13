@@ -172,6 +172,9 @@ void Mensaje(string sMensaje) {
   // sMensaje.length es el largo de la cadena a escribir
   // z = 2x + y
   // y = sMensaje.length + 2r
+  //  |----------------------z------------------------|
+  //  |--x---||----------------y--------------||---x--|
+  //          |--r--||----mensaje-----||--r---|
 
   int z = 51;
   string marco = "****";
