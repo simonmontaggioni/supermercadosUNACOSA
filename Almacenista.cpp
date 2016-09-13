@@ -77,7 +77,7 @@ void Almacenista::CrearInventario() {
   Inventario inventario(sNombreInventario, iIdInventario);
   aInventarios.push_back(inventario);
 
-  cout << iIdInventario << endl;
+  // cout << iIdInventario << endl;
   cout << "Se ha creado con exito el inventario " << endl
        << "id: " << aInventarios[iIdInventario].GetId()
        << " nombre: " << sNombreInventario << endl;
@@ -358,10 +358,16 @@ void Almacenista::MostrarListaInventarios() {
   if (tamano == 0) {
     cout << " No se ha creado ningun inventario. " << endl;
   } else {
+    cout << endl << endl;
+    cout << "----------------------------" << endl;
+    cout<<"| id " << "| nombre inventario   |" << endl;
+    cout << "----------------------------";
     for (int i = 0; i < tamano; i++) {
-      cout << "id: " << aInventarios[i].GetId()
-           << "nombre: " << aInventarios[i].GetName() << endl;
+      cout << endl << setfill(' ')
+      << "| "<< setw(2) << aInventarios[i].GetId() << " |"
+      << setw(20) << aInventarios[i].GetName() << " |";
     } // for
+    cout << endl << "----------------------------" << endl;
   }   // else
 } // MostrarListaInventarios
 //******************************************************************************
