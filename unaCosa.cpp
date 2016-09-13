@@ -35,8 +35,8 @@ int main() {
   // almacenista.SetStatusProducto();
   enum opciones {
     CREARINVENTARIO = 1,
-    CARGARARCHIVOINVENTARIO,
     LISTAINVENTARIOS,
+    CARGARARCHIVOINVENTARIO,
     MOSTRARINVENTARIO,
     IMPRIMIRINVENTARIO,
     VACIARINVENTARIO,
@@ -62,8 +62,8 @@ int main() {
     cout << "**  Presione:                                 **\n";
     cout << "**                                            **\n";
     cout << "**  (1)....Crear Inventario.                  **\n";
-    cout << "**  (2)....Cargar Archivo de Inventario.      **\n";
-    cout << "**  (3)....Mostrar lista de Inventarios.      **\n";
+    cout << "**  (2)....Mostrar lista de Inventarios.      **\n";
+    cout << "**  (3)....Cargar Archivo de Inventario.      **\n";
     cout << "**  (4)....Mostrar Inventario.                **\n";
     cout << "**  (5)....Imprimir Inventario.               **\n";
     cout << "**  (6)....Vaciar Inventario.                 **\n";
