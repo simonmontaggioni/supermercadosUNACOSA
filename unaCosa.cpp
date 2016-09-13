@@ -7,6 +7,9 @@
 void Mensaje(string sMensaje);
 void pausa();
 void Bienvenida();
+int SolicitudIdInvent(int iCantInventarios);
+
+
 int main() {
 
   // Mensaje("B I E N V E N I D O");
@@ -44,6 +47,7 @@ int main() {
     MOSTRARTRANSACCION,
     IMPRIMIRTRANSACCIONES,
     COMPARARINVENTRANS,
+    IMPRIMIRORDENCOMPRAS,
     SALIR
   };
   int iIdInventario = 0;
@@ -71,7 +75,8 @@ int main() {
     cout << "**  (8)....Mostrar Transacciones.             **\n";
     cout << "**  (9)....Imprimir Transacciones.            **\n";
     cout << "**  (10)...Actualizar Inventario.             **\n";
-    cout << "**  (11)...Salir.                             **\n";
+    cout << "**  (11)...Imprimir Orden de Compra.          **\n";
+    cout << "**  (12)...Salir.                             **\n";
     cout << "**                                            **" << endl;
     cout << "************************************************" << endl;
     cout << "************************************************" << endl;
@@ -85,26 +90,31 @@ int main() {
       pausa();
       break;
     case CARGARARCHIVOINVENTARIO:
-      cout <<endl << "Indique el id del inventario: ";
-      cin >> iIdInventario;
-      almacenista.CargarArchivoInventario(iIdInventario);
-      pausa();
+      // cout <<endl << "Indique el id del inventario: ";
+      // cin >> iIdInventario;
+      iIdInventario = SolicitudIdInvent( almacenista.CantInventarios());
+      if ( iIdInventario != -1 ){
+        almacenista.CargarArchivoInventario(iIdInventario);
+        pausa();
+      }
       break;
     case LISTAINVENTARIOS:
       almacenista.MostrarListaInventarios();
       pausa();
       break;
     case MOSTRARINVENTARIO:
-      cout << endl << "Indique el id del inventario: ";
-      cin >> iIdInventario;
-      almacenista.MostrarInventario(iIdInventario);
-      pausa();
+      iIdInventario = SolicitudIdInvent( almacenista.CantInventarios());
+      if ( iIdInventario != -1 ){
+        almacenista.MostrarInventario(iIdInventario);
+        pausa();
+      }
       break;
     case IMPRIMIRINVENTARIO:
-      cout << "indique el id del inventario: ";
-      cin >> iIdInventario;
-      almacenista.ImprimirInventario(iIdInventario);
-      pausa();
+      iIdInventario = SolicitudIdInvent( almacenista.CantInventarios());
+      if ( iIdInventario != -1 ){
+        almacenista.ImprimirInventario(iIdInventario);
+        pausa();
+      }
       break;
     case VACIARINVENTARIO:
       almacenista.VaciarInventario();
@@ -123,11 +133,20 @@ int main() {
       pausa();
       break;
     case COMPARARINVENTRANS:
-      cout << endl << "Indique el id del inventario: ";
-      cin >> iIdInventario;
-      almacenista.CompararInvenTrans(iIdInventario);
-      pausa();
+      iIdInventario = SolicitudIdInvent( almacenista.CantInventarios());
+      if ( iIdInventario != -1 ){
+        almacenista.CompararInvenTrans(iIdInventario);
+        pausa();
+      }
       break;
+      case IMPRIMIRORDENCOMPRAS:
+        iIdInventario = SolicitudIdInvent( almacenista.CantInventarios());
+        if ( iIdInventario != -1 ){
+          system("clear");
+          almacenista.OrdenCompra(iIdInventario);
+          pausa();
+        }
+        break;
     case SALIR:
       bInProgram = false;
       Mensaje("H A S T A  P R O N T O");
@@ -227,3 +246,19 @@ void Bienvenida(){
   cout<< "***************************************************************\n";
 }// Bienvenida
 //******************************************************************************
+
+
+int SolicitudIdInvent(int iCantInventarios){
+  int iIdInventario;
+  int salida;
+  cout << endl << "Indique el id del inventario: ";
+  cin >> iIdInventario;
+
+  if((iIdInventario < 0) || (iIdInventario > (iCantInventarios - 1))){
+    Mensaje( "Error en id de inventario");
+    salida = -1;
+  } else {
+    salida = iIdInventario;
+  }
+  return salida;
+}

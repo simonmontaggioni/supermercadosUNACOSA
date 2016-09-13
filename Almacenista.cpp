@@ -50,6 +50,10 @@ public:
   void VaciarInventario();
   // mustra una lista de los inventarios que contiene el sistema
   void MostrarListaInventarios();
+  //imprime una orden de compra para productos que estan por debajo del stock minimo
+  void OrdenCompra(int iIdInventario);
+  //  dvuelve la cantidad de inventarios que pertenecen al almacenista
+  int CantInventarios();
 
 private:
   string sNombreAlmacenista;
@@ -72,6 +76,7 @@ Almacenista::Almacenista(string sNombre) {
 void Almacenista::CrearInventario() {
   string sNombreInventario;
   static int iIdInventario = 0;
+  cout << endl;
   cout << "Ingrese el nombre del inventario que desea crear: ";
   cin >> sNombreInventario;
   Inventario inventario(sNombreInventario, iIdInventario);
@@ -114,10 +119,23 @@ void Almacenista::BuscarProducto(int iIdInventario) {
 //******************************************************************************
 void Almacenista::CargarArchivoInventario(int iIdInventario) {
   string sMiArchivo;
+  char cOpcion;
   cout << " Digite el nombre del archivo de inventario que desea cargar: ";
   cin >> sMiArchivo;
 
-  aInventarios[iIdInventario].File2Inventario(sMiArchivo);
+  cout << "Va a cargar el inventario \"" << aInventarios[iIdInventario].GetName()
+       << "\" con el archivo \"" << sMiArchivo << "\"" << endl << endl;
+  cout << "presione (y) para continuar o cualquier tecla para cancelar"<< endl
+       << ">>> ";
+  cin >> cOpcion;
+
+  if (cOpcion == 'y'){
+    aInventarios[iIdInventario].File2Inventario(sMiArchivo);
+  } else {
+    cout << endl << "Carga cancelada";
+  }
+
+
 } // CargarArchivoInventario
 //******************************************************************************
 
@@ -356,7 +374,7 @@ void Almacenista::MostrarListaInventarios() {
   int tamano = aInventarios.size();
 
   if (tamano == 0) {
-    cout << " No se ha creado ningun inventario. " << endl;
+    cout << endl << " No se ha creado ningun inventario. " << endl;
   } else {
     cout << endl << endl;
     cout << "----------------------------" << endl;
@@ -370,4 +388,46 @@ void Almacenista::MostrarListaInventarios() {
     cout << endl << "----------------------------" << endl;
   }   // else
 } // MostrarListaInventarios
+//******************************************************************************
+
+
+//imprime una orden de compra para productos que estan por debajo del stock minimo
+//******************************************************************************
+void Almacenista::OrdenCompra(int iIdInventario) {
+  int iIdProducto;
+  int iCantidadProductos = 0;
+  int iExistenciaProducto = 0;
+
+  iCantidadProductos = aInventarios[iIdInventario].Size();
+
+  cout << endl
+       << "   Inventario: \"" <<aInventarios[iIdInventario].GetName() <<"\"" << endl;
+  cout << "----------------------------------------------" << endl;
+  cout << "|      O R D E N   D E  C O M P R A S        |" << endl;
+  cout << "----------------------------------------------" << endl;
+  cout << "|  Productos por adquirir:                   |"<<endl;
+  cout << "----------------------------------------------" << endl;
+  cout<<"| id " << "|   nombre Producto   |"<< " cant a adquirir |" << endl;
+  cout << "----------------------------------------------";
+
+  for (int iIdProducto = 1; iIdProducto <= iCantidadProductos; iIdProducto++){
+    iExistenciaProducto = aInventarios[iIdInventario].GetCantidadProduct(iIdProducto);
+    if (iExistenciaProducto < 6){
+
+      cout << endl << right << setfill(' ')
+      << "| "<< setw(2) << iIdProducto << " |"
+      << setw(20) << aInventarios[iIdInventario].GetProductName(iIdProducto) << " |"
+      << setw(16) << 10 << " |";
+    }
+  } // for
+  cout << endl << "----------------------------------------------" << endl;
+
+}
+//******************************************************************************
+
+// obtener la cantidad de transaccion  de producto
+//******************************************************************************
+int Almacenista::CantInventarios() {
+  return aInventarios.size();
+}
 //******************************************************************************

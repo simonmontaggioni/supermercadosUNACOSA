@@ -41,8 +41,8 @@ public:
   void SetStatusProduct(int iIdProducto, bool bStatusProducto);
   // metodo para buscar un producto por su id
   string GetProductName(int iIdProducto);
-  // metodo para mostrar producto
-  void MostrarProducto(int iIdProducto);
+  // metodo para obtener un producto
+  Producto GetProducto(int iIdProducto);
   // asigna la cantidad en existencia de un producto en el inventario
   bool SetCantidadProducto(int iIdProducto, char cAddOrRest, int cCantidad);
   // metodo que despliega una lista de todos los productos del inventario
@@ -175,6 +175,12 @@ Producto Inventario::FindProduct(int iIdProducto) {
 } // GetLastProduct
 //******************************************************************************
 
+// metodo para buscar un producto por su id
+//******************************************************************************
+string Inventario::GetProductName(int iIdProducto){
+  return aProductos[iIdProducto -1].GetNombre();
+}//GetProductName
+//******************************************************************************
 // Metodo para agregar un producto al Inventario
 //******************************************************************************
 void Inventario::addProduct(string sNombreProducto, float fPrecioProducto,
@@ -200,8 +206,8 @@ void Inventario::SetStatusProduct(int iIdProducto, bool bStatusProducto) {
 
 // imprime un producto en pantalla
 //******************************************************************************
-void Inventario::MostrarProducto(int iIdProducto) {
-  cout << aProductos[iIdProducto - 1];
+Producto Inventario::GetProducto(int iIdProducto) {
+  return aProductos[iIdProducto - 1];
 } // MostrarProducto
 //******************************************************************************
 
@@ -262,7 +268,7 @@ void Inventario::File2Inventario(string sArchivo) {
       sNombre = sProductoLeido[3];
       //   iCantidad = stoi(sProductoLeido[7]);
 
-      //*********************************************************************
+//******************************************************************************
       try {
         // throw(stoi(sProductoLeido[7]));
         if (!stoi(sProductoLeido[7]))
@@ -280,7 +286,7 @@ void Inventario::File2Inventario(string sArchivo) {
       } catch (...) {
         bErrorEnLectura = true;
       }
-      //*********************************************************************
+//******************************************************************************
 
       // cout << sNombre << "\n"; // cout << fPrecio << "\n";
       // cout << iCantidad << "\n";// cout << bStatus << "\n";
