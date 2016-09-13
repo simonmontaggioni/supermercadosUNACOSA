@@ -421,11 +421,13 @@ void Almacenista::OrdenCompra(int iIdInventario) {
     }
   } // for
   cout << endl << "----------------------------------------------" << endl;
+  cout << "desea imprimir? (y/n)" << endl;
+  cout << ">>> ";
 
 }
 //******************************************************************************
 
-// obtener la cantidad de transaccion  de producto
+// obtener la cantidad de inventarios del almacenista
 //******************************************************************************
 int Almacenista::CantInventarios() {
   return aInventarios.size();
