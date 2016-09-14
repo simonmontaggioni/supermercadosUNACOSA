@@ -9,33 +9,13 @@ void pausa();
 void Bienvenida();
 int SolicitudIdInvent(int iCantInventarios);
 
-
 int main() {
 
-  // Mensaje("B I E N V E N I D O");
   Bienvenida();
   pausa();
   Almacenista almacenista("simon");
   almacenista.CrearTransaccion();
 
-  // almacenista.CrearInventario();
-  // almacenista.CargarArchivoInventario();
-  // almacenista.CargaManual();
-  // almacenista.MostrarInventario();
-  // almacenista.ImprimirInventario();
-  // almacenista.CargarArchivoTransaccion();
-  // almacenista.MostrarTransaccion();
-  // almacenista.ImprimirTransacciones();
-  // almacenista.BuscarProducto();
-  // almacenista.ObtenerExistenciaProducto();
-  // almacenista.UpdateCantidadProducto();
-  // almacenista.ObtenerExistenciaProducto();
-  // almacenista.ObtenerTransaccionProducto();
-  // almacenista.CompararInvenTrans();
-  // almacenista.MostrarInventario();
-  // almacenista.CompararInvenTrans();
-  // almacenista.ActualizaInventario();
-  // almacenista.SetStatusProducto();
   enum opciones {
     CREARINVENTARIO = 1,
     LISTAINVENTARIOS,
@@ -90,10 +70,8 @@ int main() {
       pausa();
       break;
     case CARGARARCHIVOINVENTARIO:
-      // cout <<endl << "Indique el id del inventario: ";
-      // cin >> iIdInventario;
-      iIdInventario = SolicitudIdInvent( almacenista.CantInventarios());
-      if ( iIdInventario != -1 ){
+      iIdInventario = SolicitudIdInvent(almacenista.CantInventarios());
+      if (iIdInventario != -1) {
         almacenista.CargarArchivoInventario(iIdInventario);
         pausa();
       }
@@ -103,15 +81,15 @@ int main() {
       pausa();
       break;
     case MOSTRARINVENTARIO:
-      iIdInventario = SolicitudIdInvent( almacenista.CantInventarios());
-      if ( iIdInventario != -1 ){
+      iIdInventario = SolicitudIdInvent(almacenista.CantInventarios());
+      if (iIdInventario != -1) {
         almacenista.MostrarInventario(iIdInventario);
         pausa();
       }
       break;
     case IMPRIMIRINVENTARIO:
-      iIdInventario = SolicitudIdInvent( almacenista.CantInventarios());
-      if ( iIdInventario != -1 ){
+      iIdInventario = SolicitudIdInvent(almacenista.CantInventarios());
+      if (iIdInventario != -1) {
         almacenista.ImprimirInventario(iIdInventario);
         pausa();
       }
@@ -133,20 +111,20 @@ int main() {
       pausa();
       break;
     case COMPARARINVENTRANS:
-      iIdInventario = SolicitudIdInvent( almacenista.CantInventarios());
-      if ( iIdInventario != -1 ){
+      iIdInventario = SolicitudIdInvent(almacenista.CantInventarios());
+      if (iIdInventario != -1) {
         almacenista.CompararInvenTrans(iIdInventario);
         pausa();
       }
       break;
-      case IMPRIMIRORDENCOMPRAS:
-        iIdInventario = SolicitudIdInvent( almacenista.CantInventarios());
-        if ( iIdInventario != -1 ){
-          system("clear");
-          almacenista.OrdenCompra(iIdInventario);
-          pausa();
-        }
-        break;
+    case IMPRIMIRORDENCOMPRAS:
+      iIdInventario = SolicitudIdInvent(almacenista.CantInventarios());
+      if (iIdInventario != -1) {
+        system("clear");
+        almacenista.OrdenCompra(iIdInventario);
+        pausa();
+      }
+      break;
     case SALIR:
       bInProgram = false;
       Mensaje("H A S T A  P R O N T O");
@@ -157,11 +135,9 @@ int main() {
       break;
     } // switch
   }   // while
-  // endwin();
   return 0;
 } // main
 //******************************************************************************
-
 
 // Hace una pausa para que el usuario pueda verificar los mensajes en pantalla
 // y espera a que el usuario presione la letra c
@@ -176,7 +152,6 @@ void pausa() {
   } // while
 } // pausa
 //******************************************************************************
-
 
 // Imprime un mensaje con un marco que lo resalta, debe recibir  un string
 // con el mensaje que se quiere imprimir en la pantalla
@@ -219,46 +194,49 @@ void Mensaje(string sMensaje) {
 } // mensaje
 //******************************************************************************
 
-//Imprime una pantalla de Bienvenida o logo de sistema
+// Imprime una pantalla de Bienvenida o logo de sistema
 //******************************************************************************
-void Bienvenida(){
+void Bienvenida() {
   system("clear");
-  cout<< "***************************************************************\n";
-  cout<< "***************************************************************\n";
-  cout<< "***************************************************************\n";
-  cout<< "****                                                       ****\n";
-  cout<< "****    ****  *  **** *********** *   *     *              ****\n";
-  cout<< "****    *     *  *       *   *    ** **    **              ****\n";
-  cout<< "****    ****  *  ****    *   ***  * * *   * *              ****\n";
-  cout<< "****       *  *     *    *   *    *   *  ****              ****\n";
-  cout<< "****    ****  *  ****    *   **** *   * *   *              ****\n";
-  cout<< "****                                                       ****\n";
-  cout<< "****                I N V E N T A R I O                    ****\n";
-  cout<< "****                                                       ****\n";
-  cout<< "****                           ***** **** **** *           ****\n";
-  cout<< "****                           *     *  * *    **          ****\n";
-  cout<< "****          *  * **** *****  *     *  * **** * *         ****\n";
-  cout<< "****          *  * *  * *   *  *     *  *    * ****        ****\n";
-  cout<< "****          **** *  * ****** ***** **** **** *   *       ****\n";
-  cout<< "****                                                       ****\n";
-  cout<< "***************************************************************\n";
-  cout<< "***************************************************************\n";
-  cout<< "***************************************************************\n";
-}// Bienvenida
+  cout << "***************************************************************\n";
+  cout << "***************************************************************\n";
+  cout << "***************************************************************\n";
+  cout << "****                                                       ****\n";
+  cout << "****    ****  *  **** *********** *   *     *              ****\n";
+  cout << "****    *     *  *       *   *    ** **    **              ****\n";
+  cout << "****    ****  *  ****    *   ***  * * *   * *              ****\n";
+  cout << "****       *  *     *    *   *    *   *  ****              ****\n";
+  cout << "****    ****  *  ****    *   **** *   * *   *              ****\n";
+  cout << "****                                                       ****\n";
+  cout << "****                I N V E N T A R I O                    ****\n";
+  cout << "****                                                       ****\n";
+  cout << "****                           ***** **** **** *           ****\n";
+  cout << "****                           *     *  * *    **          ****\n";
+  cout << "****          *  * **** *****  *     *  * **** * *         ****\n";
+  cout << "****          *  * *  * *   *  *     *  *    * ****        ****\n";
+  cout << "****          **** *  * ****** ***** **** **** *   *       ****\n";
+  cout << "****                                                       ****\n";
+  cout << "***************************************************************\n";
+  cout << "***************************************************************\n";
+  cout << "***************************************************************\n";
+} // Bienvenida
 //******************************************************************************
 
-
-int SolicitudIdInvent(int iCantInventarios){
+// solicita al usuario el id del inventario que desea manipular, y previene
+// errores por una entrada de datos errada
+//******************************************************************************
+int SolicitudIdInvent(int iCantInventarios) {
   int iIdInventario;
-  int salida;
+  int iSalida;
   cout << endl << "Indique el id del inventario: ";
   cin >> iIdInventario;
 
-  if((iIdInventario < 0) || (iIdInventario > (iCantInventarios - 1))){
-    Mensaje( "Error en id de inventario");
-    salida = -1;
+  if ((iIdInventario < 0) || (iIdInventario > (iCantInventarios - 1))) {
+    Mensaje("Error en id de inventario");
+    iSalida = -1;
   } else {
-    salida = iIdInventario;
+    iSalida = iIdInventario;
   }
-  return salida;
+  return iSalida;
 }
+//******************************************************************************
